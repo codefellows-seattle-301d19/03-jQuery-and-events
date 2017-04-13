@@ -59,6 +59,15 @@ articleView.handleCategoryFilter = function() {
   //       When the blank (default) option is selected, show all the articles, except for the template.
   //       Be sure to reset the #author-filter while you are at it!
 
+  $('#category-filter').on('change', function() {
+    if ($(this).val()) {
+      $('article').hide();
+      $(`article[data-category="${this.value}"]`).fadeIn(500);
+    } else {
+      $('article').show();
+    }
+    $('#author-filter').val('');
+  });
 };
 
 articleView.handleMainNav = function() {
@@ -68,8 +77,18 @@ articleView.handleMainNav = function() {
   //       So: You need to dynamically build a selector string with the correct ID, based on the
   //       data available to you on the .tab element that was clicked.
 
+  $('.tab').on('click', function(event) {
+    $('.tab-content').hide();
+    console.log(event.target);
+    console.log($(event.target));
+    if ($(event.target).attr('class') === 'icon-home') {
+      $('#articles').show();
+    } else if ($(event.target).attr('class') === 'icon-address-book') {
+      $('#about').show();
+    }
 
-  $('.main-nav .tab:first').click(); // Let's now trigger a click on the first .tab element, to set up the page.
+  });
+  // $('.main-nav .tab:first').click(); // Let's now trigger a click on the first .tab element, to set up the page.
 };
 
 articleView.setTeasers = function() {
@@ -87,4 +106,8 @@ articleView.setTeasers = function() {
 $(document).ready(function() {
   articleView.populateFilters();
   articleView.handleAuthorFilter();
+  articleView.handleCategoryFilter();
+  articleView.handleMainNav();
+  articleView.setTeasers();
+
 })

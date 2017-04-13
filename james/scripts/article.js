@@ -26,12 +26,12 @@ Article.prototype.toHtml = function() {
   $newArticle.find('.article-body').html(this.body);
   $newArticle.find('time[pubdate]').attr('datetime', this.publishedOn);
   $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
-  $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
+  $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn)) / 60 / 60 / 24 / 1000) + ' days ago');
   $newArticle.append('<hr>');
   return $newArticle;
 };
 
-rawData.sort(function(a,b) {
+rawData.sort(function(a, b) {
   return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
 });
 
@@ -39,6 +39,6 @@ rawData.forEach(function(articleObject) {
   articles.push(new Article(articleObject));
 });
 
-articles.forEach(function(article){
+articles.forEach(function(article) {
   $('#articles').append(article.toHtml());
 });

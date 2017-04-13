@@ -56,34 +56,41 @@ articleView.handleCategoryFilter = function() {
 };
 
 articleView.handleMainNav = function() {
-  $('.main-nav').on('click', '.tab', function() {
-    if ($(this).attr('data-content') === 'articles') {
-      $('.tab-content').hide();
-      $('#articles').fadeIn();
-    } else if ($(this).attr('data-content') === 'about') {
-      $('.tab-content').hide();
-      $('#about').fadeIn();
-    }
-  });
+  $('.main-nav .tab').on('click', function(){
+    $('.tab-content').hide();
+    $('#' + $(this).attr('data-content')).fadeIn();
+  })
+  
+  // This is how I accomplished the task before class.
+
+  // $('.main-nav').on('click', '.tab', function() {
+  //   if ($(this).attr('data-content') === 'articles') {
+  //     $('.tab-content').hide();
+  //     $('#articles').fadeIn();
+  //   } else if ($(this).attr('data-content') === 'about') {
+  //     $('.tab-content').hide();
+  //     $('#about').fadeIn();
+  //   }
+  
+  // });
+  $('.main-nav .tab:first').click();
 }
 
 articleView.setTeasers = function() {
-  $('.article-body *:nth-of-type(n+2)').hide(); // Hide elements beyond the first 2 in any article body.
-  $('.read-on').on('click', function(){
-      $('.read-on').show();
-  });
-  // TODO: Add an event handler to reveal all the hidden elements,
-  //       when the .read-on link is clicked. You can go ahead and hide the
-  //       "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
-  //       Ideally, we'd attach this as just 1 event handler on the #articles section, and let it
-  //       process any .read-on clicks that happen within child nodes.
-
+  $('.article-body *:nth-of-type(n+2)').hide();
+  $('.read-on').on('click', function(event) {
+    event.preventDefault();
+    var theLink = $(this);
+    var $articleBody = $theLink.siblings('.article-body');
+    $articleBody.children().show();
+    $theLink.hide();
+  });  
 };
-articleView.populateFilters();
 $(document).ready(function() {
+  articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleMainNav();
   articleView.populateFilters();
   articleView.setTeasers();
-articleView.handleAuthorFilter();
+  articleView.handleAuthorFilter();
 })

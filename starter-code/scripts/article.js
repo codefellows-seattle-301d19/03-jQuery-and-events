@@ -29,7 +29,7 @@ Article.prototype.toHtml = function() {
   $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
   $newArticle.find('time').html('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
   $newArticle.append('<hr>');
-  return $newArticle.html();
+  return $newArticle;
 };
 
 rawData.sort(function(a,b) {

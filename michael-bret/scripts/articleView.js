@@ -38,7 +38,6 @@ articleView.handleAuthorFilter = function() {
     //         onto it.
     if ($(this).val()) {
       $('article').hide();
-      console.log(this.value);
       $(`article[data-author="${this.value}"]`).fadeIn(500);
       // TODO: If the select box was changed to an option that has a value, we need to hide all the articles,
       //       and then show just the ones that match for the author that was selected.
@@ -79,8 +78,6 @@ articleView.handleMainNav = function() {
 
   $('.tab').on('click', function(event) {
     $('.tab-content').hide();
-    console.log(event.target);
-    console.log($(event.target));
     if ($(event.target).attr('class') === 'icon-home') {
       $('#articles').show();
     } else if ($(event.target).attr('class') === 'icon-address-book') {
@@ -99,6 +96,12 @@ articleView.setTeasers = function() {
   //       "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
   //       Ideally, we'd attach this as just 1 event handler on the #articles section, and let it
   //       process any .read-on clicks that happen within child nodes.
+
+  $('.read-on').on('click', function(event) {
+    event.preventDefault();
+    $('article').show();
+    $('.read-on').hide();
+  })
 
 };
 

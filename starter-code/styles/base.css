@@ -5,6 +5,7 @@ body {
   line-height: 1.5;
   font-size: 100%;
   color: #313131;
+  background: #DFDFDF;
 }
 
 hr {
@@ -27,7 +28,7 @@ address {
 
 a, a:link, a:active {
   text-decoration: none;
-  color: #777;
+  color: rgb(26, 115, 153);
 }
 
 a:hover, a:focus {

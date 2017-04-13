@@ -80,7 +80,7 @@ articleView.setTeasers = function() {
   $('.article-body *:nth-of-type(n+2)').hide();
   $('.read-on').on('click', function(event) {
     event.preventDefault();
-    var theLink = $(this);
+    var $theLink = $(this);
     var $articleBody = $theLink.siblings('.article-body');
     $articleBody.children().show();
     $theLink.hide();

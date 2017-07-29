@@ -71,6 +71,7 @@ articleView.handleMainNav = function() {
   $('.main-nav .tab').on('click', function() {
     $('.tab-content').hide();
     $('#' + $(this).attr('data-content')).fadeIn();
+    // $([data-content=this.data-content]).fadeIn();
   });
 };
 
@@ -95,10 +96,8 @@ articleView.setTeasers = function() {
   //       process any .read-on clicks that happen within child nodes.
   $('.read-on').on('click', function(event){
     event.preventDefault();
-    var $theLink = $(this);
-    var $articleBody = $theLink.siblings('.articel-body');
-    $articleBody.children().show();
-    $theLink.hide();
+    $(this).hide();
+    $(this).siblings('.article-body').contents().show()
   });
 };
 

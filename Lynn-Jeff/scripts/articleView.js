@@ -85,7 +85,7 @@ articleView.handleMainNav = function() {
   //   $('.main-nav .data-content:second' ).fadeIn();
   // });// Let's now trigger a click on the first .tab element, to set up the page.
 
-
+$('.show-less').hide();
 articleView.setTeasers = function() {
   $('.article-body :nth-of-type(n+2)').hide(); // Hide elements beyond the first 2 in any article body.
 
@@ -97,7 +97,13 @@ articleView.setTeasers = function() {
   $('.read-on').on('click', function(event){
     event.preventDefault();
     $(this).hide();
-    $(this).siblings('.article-body').contents().show()
+    $(this).siblings('.article-body').contents().show();
+    $(this).siblings('.show-less').show();
+    $('.show-less').on('click',function(){
+      $(this).hide();
+      $('.article-body :nth-of-type(n+2)').hide();
+      $('.read-on').show();
+    })
   });
 };
 
